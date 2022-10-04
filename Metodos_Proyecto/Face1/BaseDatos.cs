@@ -43,7 +43,7 @@ namespace Metodos_Proyecto
         }
         public List<string> GET_LIST()
         {
-            string imprimir = "\t" + Convert.ToString(j) + ":" + baseDatos.GET_LIST()[j] + "\n";
+            //string imprimir = "\t" + Convert.ToString(j) + ":" + baseDatos.GET_LIST()[j] + "\n";
             return EmpresasL;
         }
 

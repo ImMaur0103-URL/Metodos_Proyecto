@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Metodos_Proyecto
 {
-    class Codificacion_Aritmetica
+    public class Codificacion_Aritmetica
     {
         private decimal Largo_Cadena;
         private string Cadena_Sin_Codificar;

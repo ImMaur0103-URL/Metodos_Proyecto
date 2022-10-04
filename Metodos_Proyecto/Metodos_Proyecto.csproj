@@ -44,6 +44,7 @@
     <Compile Include="Face1\BaseDatos.cs" />
     <Compile Include="Face1\Btree\BTree.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Face2\Codificacion_Huffman.cs" />
     <Compile Include="Face2\Codificacion.cs" />
     <Compile Include="Face2\Codificacion_Aritmetica.cs" />
     <Compile Include="Face2\Codificacion_Huffman_Nodos.cs" />

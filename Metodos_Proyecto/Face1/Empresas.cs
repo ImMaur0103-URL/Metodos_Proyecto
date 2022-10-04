@@ -12,8 +12,7 @@ namespace Metodos_Proyecto
         private string DPI;
         private string Codificado;
         private int Decodificacion = new Random().Next(0, 1);
-        private string Metodo;
-        private 
+        private string Metodo; 
 
         public Empresas(string Nombre, string DPI_Decodificado)
         {
