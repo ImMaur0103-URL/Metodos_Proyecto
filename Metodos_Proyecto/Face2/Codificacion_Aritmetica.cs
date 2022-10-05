@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Metodos_Proyecto
+namespace Metodos_Proyecto.Fase2
 {
     public class Codificacion_Aritmetica
     {
-        private decimal Largo_Cadena;
+        private int Largo_Cadena;
         private string Cadena_Sin_Codificar;
         private decimal Cadena_Codificada;
 
@@ -122,8 +122,10 @@ namespace Metodos_Proyecto
             }
         }
 
-        public string Get_Decodificacion(int lon)
+        public string Get_Decodificacion(int lon = -1)
         {
+            if (lon == -1)
+                lon = Largo_Cadena;
             decimal Mensaje_Sucio = Cadena_Codificada;
             string Mensaje_limpio = "";
             int aux = 0;

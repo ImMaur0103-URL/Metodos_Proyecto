@@ -14,7 +14,6 @@ namespace Metodos_Proyecto
         private string Direccion;
         private DateTime FechaNacimiento;
         private List<Empresas> Empresas_Lista;
-        private List<String> EmpresasL;
         //string secondname,
 
         public BaseDatos(string dpi, string name, string address, DateTime fecha, List<string> companies)
@@ -26,28 +25,46 @@ namespace Metodos_Proyecto
             Direccion = address;
             FechaNacimiento = fecha;
 
-            EmpresasL = companies;
+            SET_Empresas(companies);
         }
 
         public string GET()
         {
             string empresas = "";
-            for (int i = 0; i < EmpresasL.Count; i++)
+            for (int i = 0; i < Empresas_Lista.Count; i++)
             {
-                empresas += EmpresasL[i];
-                if(EmpresasL.Count - 1 != i)
+                if (i > 0)
                     empresas += ",";
+                empresas += Convert.ToString(i) + ":" + Empresas_Lista[i].GET_NAME() + " | " + Empresas_Lista[i].GET_DPI_CODIFICADO();
             }
             return "{\"name\":\"" + Nombre + "\"," + "\"dpi\":\"" + DPI + "\"," + "\"datebirth\":\"" + Convert.ToString(FechaNacimiento) +
                 "\"," + "\"address\":\"" + Direccion + "\"," + "\"companies\":[" + empresas + "]\"}";
         }
-        public List<string> GET_LIST()
+        public string GET_LIST_PRINT()
         {
-            //string imprimir = "\t" + Convert.ToString(j) + ":" + baseDatos.GET_LIST()[j] + "\n";
-            return EmpresasL;
+            string imprimir = "";
+            for (int i = 0; i < Empresas_Lista.Count; i++)
+            {
+                if (i > 0)
+                    imprimir += ",\n";
+                imprimir += Convert.ToString(i) + ":" + Empresas_Lista[i].GET_NAME() + " | " + Empresas_Lista[i].GET_DPI_CODIFICADO();
+            }
+            return imprimir;
+        }
+        public string GET_LIST_SERIALIZADO()
+        {
+            string imprimir = "";
+            for (int i = 0; i < Empresas_Lista.Count; i++)
+            {
+                if (i > 0)
+                    imprimir += ";";
+                imprimir += Convert.ToString(i) + ":" + Empresas_Lista[i].GET_NAME() + " | " + Empresas_Lista[i].GET_DPI_CODIFICADO();
+            }
+            return imprimir;
         }
 
-        public void PATCH(string NDireccion = "Sin Actualizar", string NFecha = "Sin Actualizar", List<string> NEmpresasL = null, string NDPI = "Sin Actualizar", string Nname = "Sin Actualizar")
+
+        public void PATCH(string NDireccion = "Sin Actualizar", string NFecha = "Sin Actualizar", string NEmpresasL = "Sin Actualizar", string NDPI = "Sin Actualizar", string Nname = "Sin Actualizar")
         {
             string Parametro = "Sin Actualizar";
             if (NDPI == Parametro)
@@ -58,8 +75,10 @@ namespace Metodos_Proyecto
                 NDireccion = Direccion;
             if (NFecha == Parametro)
                 NFecha = Convert.ToString(FechaNacimiento);
-            if (NEmpresasL == null)
-                NEmpresasL = EmpresasL;
+            if (NEmpresasL != Parametro)
+            {
+                SET_Empresas(NEmpresasL);                
+            }
 
             DPI = NDPI;
             Nombre = Nname;
@@ -70,7 +89,21 @@ namespace Metodos_Proyecto
 
         private void SET_Empresas(List<string> Insertar)
         {
-              
+            Empresas_Lista = new List<Empresas>();
+            for (int i = 0; i < Insertar.Count; i++)
+            {
+                Empresas_Lista.Add(new Empresas(Insertar[i], DPI));
+            }
+        }
+        private void SET_Empresas(string EmpresasSerializada)
+        {
+            string[] NEmpresas = EmpresasSerializada.Split(';');
+            List<string> Lista_Empresas = new List<string>();
+            for (int i = 0; i < NEmpresas.Length; i++)
+            {
+                Lista_Empresas.Add(NEmpresas[i].Split(':')[1].Split('|')[0]);
+            }
+            SET_Empresas(Lista_Empresas);
         }
 
     }

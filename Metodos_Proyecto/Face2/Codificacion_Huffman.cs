@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Metodos_Proyecto
+namespace Metodos_Proyecto.Fase2
 {
     public class Codificacion_Huffman
     {
-        public Codificacion_Huffman_Nodos Raiz;
+        private Codificacion_Huffman_Nodos Raiz;
         private string Frace_Sucia = "";
         private string Frace_Limpia = "";
 

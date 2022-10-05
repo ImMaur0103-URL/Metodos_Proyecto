@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Metodos_Proyecto
+namespace Metodos_Proyecto.Fase2
 {
     public class Codificacion_Huffman_Nodos : IComparable<Codificacion_Huffman_Nodos>
     {
